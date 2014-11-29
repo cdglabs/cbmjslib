@@ -1,0 +1,102 @@
+in Mt: UniversalVocabularyMt .
+
+constant: ProgramVariable-CBM .
+
+in Mt: UniversalVocabularyMt .
+
+isa:  ObjectType .
+isa: TemporalStuffType .
+comment: "The collection of program variables in CBM." .
+
+constant: programUsed-CBM .
+
+in Mt: UniversalVocabularyMt .
+
+isa: BinaryPredicate .
+isa: ActorSlot .
+arg1Isa: ComputerActivity .
+arg2Isa: ProgramVariable-CBM .
+comment: "(programUsed-CBM ACT PROG) means that a copy of PROG is used in the activity ACT." .
+
+constant: programVariableHasName .
+
+in Mt: UniversalVocabularyMt .
+
+isa: BinaryPredicate .
+arg1Isa: ProgramVariable-CBM .
+arg2Isa: CharacterString .
+comment: "(programVariableHasName VAR NAME) means program variable VAR is named string NAME" .
+
+constant: programVariableRepresents .
+
+in Mt: UniversalVocabularyMt .
+
+isa: TernaryPredicate .
+arg1Isa: ProgramVariable-CBM .
+arg2Isa: Individual .
+arg3Isa: Thing .
+comment: "(programVariableRepresents VAR INDIV COLL) means program variable VAR semantically represents an individual thing INDIV which is an instance of collection thing COLL" .
+
+constant: programVariableHasProperty .
+
+in Mt: UniversalVocabularyMt .
+
+isa: BinaryPredicate .
+arg1Isa: ProgramVariable-CBM .
+arg2Isa: ProgramVariable-CBM .
+comment: "(programVariableHasProperty VAR PROPVAR) means ProgramVariable-CBM VAR has another programVariable PROPVAR as its property (field)" .
+
+constant: programVariableIsaFunctionWithArg1 .
+
+in Mt: UniversalVocabularyMt .
+
+isa: TernaryPredicate .
+arg1Isa: ProgramVariable-CBM .
+arg2Isa: Thing .
+arg3Isa: Thing .
+comment: "(programVariableIsaFunctionWithArg1 VAR THING COL) means program variable VAR is a function that inputs thing THING of type COL" .
+
+in Mt: UniversalVocabularyMt .
+
+constant: programVariableIsaFunctionWithOutput .
+
+in Mt: UniversalVocabularyMt .
+
+isa: TernaryPredicate .
+arg1Isa: ProgramVariable-CBM .
+arg2Isa: Thing .	 
+arg3Isa: Thing .	 
+comment: "(programVariableIsaFunctionWithOutput VAR THING COL) means program variable VAR is a function that outputs thing THING of type COL" .
+
+constant: programParsesInputInto .
+
+in Mt: UniversalVocabularyMt .
+
+isa: TernaryPredicate .
+arg1Isa: ProgramVariable-CBM .
+arg2Isa: Thing .
+arg3Isa: Thing .
+comment: "(programParsesInputInto VAR COL1 COL2) means program variable VAR is a function that inputs thing of type COL1 and parses into something of type COL2." .
+
+in Mt: UniversalVocabularyMt .
+
+f:(implies
+	(and (isa ?THIS ProgramVariable-CBM)
+	     (primaryFunction ?THIS SemanticParsing programUsed) 
+	     (programVariableIsaFunctionWithArg1 ?THIS ?I ?IT)
+	     (programVariableIsaFunctionWithOutput ?THIS ?O ?OT))
+	(programParsesInputInto ?THIS ?IT ?OT)).
+
+constant: ImageSearchEngine .
+
+in Mt: UniversalVocabularyMt .
+
+isa: FirstOrderCollection .
+genls: SearchEngine .
+comment: "The collection of search engines used for finding images." .
+
+in Mt: UniversalVocabularyMt .
+
+f:(implies
+	(isa ?THIS ImageSearchEngine)
+	(behaviorCapable ?THIS (SubcollectionOfWithRelationToTypeFn ElectronicDataSearching informationSought VisualImage) searchEngineUsed)).

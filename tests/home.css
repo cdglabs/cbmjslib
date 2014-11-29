@@ -1,0 +1,7 @@
+textarea {
+   /*resize: none;*/
+}
+
+.CodeMirror { 
+    border: 1px solid black; 
+}
