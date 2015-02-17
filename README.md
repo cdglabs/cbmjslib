@@ -3,6 +3,10 @@
 This is a JavaScript implementation of the "Call by Meaning" programming model for automated
 semantic discovery and data adaption as described in this [paper](http://www.hesam.us/callbymeaning/).
 
+## Blog Entry
+
+Read the [blog post](http://www.cdglabs.org/cbmjslib/blog) about it
+
 # Instructions
 
 In order to use CbMJS library first launch Cyc and its interface server:
